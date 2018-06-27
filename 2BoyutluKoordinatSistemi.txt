@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2Boyutlu_KoordinatSistemi
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x1, y1, x2, y2, x3, y3, x4, y4;
+            int Enbuyukx, Enbuyuky , Enkucukx , Enkucuky;
+
+
+            int[] nok1 = new int[2];
+            Console.Write("1. noktayý giriniz x1,y1:");
+            string[] n1 = Console.ReadLine().Split(',');
+            DiziUzunlukKontrol(n1.Length);
+         
+
+
+
+             x1 = Convert.ToInt32(n1[0]);
+            y1 = Convert.ToInt32(n1[1]);
+
+            int[] nok2 = new int[2];
+            Console.Write("2. noktayý giriniz x2,y2:");
+            string[] n2 = Console.ReadLine().Split(',');
+            DiziUzunlukKontrol(n2.Length);
+
+            x2 = Convert.ToInt32(n2[0]);
+            y2 = Convert.ToInt32(n2[1]);
+
+            int[] nok3 = new int[2];
+            Console.Write("3. noktayý giriniz x3,y3:");
+            string[] n3 = Console.ReadLine().Split(',');
+            DiziUzunlukKontrol(n3.Length);
+
+            x3 = Convert.ToInt32(n3[0]);
+            y3 = Convert.ToInt32(n3[1]);
+
+            Enbuyukx = EnBuyukSayiBul(x1, x2, x3);
+            Enbuyuky = EnBuyukSayiBul(y1, y2, y3);
+
+
+            Enkucukx = EnKucukSayiBul(x1, x2, x3);
+            Enkucuky = EnKucukSayiBul(y1, y2, y3);
+            
+
+            int[] nok4 = new int[2];
+            Console.Write("4. noktayý giriniz x4,y4:");
+            string[] n4 = Console.ReadLine().Split(',');
+            DiziUzunlukKontrol(n4.Length);
+
+            x4 = Convert.ToInt32(n4[0]);
+            y4 = Convert.ToInt32(n4[1]);
+
+            if ((x4 <= Enbuyukx && y4 <= Enbuyuky) && (Enkucukx <= x4 && Enkucuky <= y4) ) 
+                Console.WriteLine("Üçgenin içindedir");
+            else
+                Console.WriteLine("Üçgenin dýþýndadýr");
+
+            Console.Read();
+
+
+
+        }
+
+        public static int EnBuyukSayiBul(int a,int b,int c)
+        {
+            int Enbuyuk;
+
+            if (a > b)
+                Enbuyuk = a;
+            else
+                Enbuyuk = b;
+
+            if (Enbuyuk < c)
+                Enbuyuk = c;
+
+            return Enbuyuk;
+
+        }
+
+        public static int EnKucukSayiBul(int a, int b,int c)
+        {
+            int Enkucuk;
+            if (a < b)
+                Enkucuk = a;
+            else
+                Enkucuk = b;
+
+            if (Enkucuk > c)
+                Enkucuk = c;
+
+            return Enkucuk;
+        }
+
+        public static void DiziUzunlukKontrol(int diziUzunluk)
+        {
+            if (diziUzunluk > 2)
+            {
+                Console.WriteLine("Boyut 2 den fazla olamaz. Ceza olarak uygulama kapatýlacaktýr!");
+                Console.Read();
+                Environment.Exit(0);
+            }
+
+        }
+    }
+}
